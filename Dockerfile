@@ -12,17 +12,6 @@ ENV SRC_DIR /go/src/github.com/filecoin-project/go-filecoin
 
 COPY . $SRC_DIR
 
-# Build the thing.
-RUN cd $SRC_DIR \
-&& . $HOME/.cargo/env \
-&& go run ./build/*go deps \
-&& go run ./build/*go build \
-&& go build -o ./faucet ./tools/faucet/main.go \
-&& go build -o ./genesis-file-server ./tools/genesis-file-server/main.go
-
-# Build gengen
-RUN cd
-
 # Get su-exec, a very minimal tool for dropping privileges,
 # and tini, a very minimal init daemon for containers
 ENV SUEXEC_VERSION v0.2
